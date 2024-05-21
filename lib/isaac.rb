@@ -8,7 +8,6 @@ module Isaac
   # TODO: Split classes / methods into separate
   # files to avoid merge conflicts.
   class Canvas
-    def initialize(width, height)
-    end
+    def initialize(width, height); end
   end
 end
