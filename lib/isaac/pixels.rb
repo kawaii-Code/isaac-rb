@@ -1,6 +1,7 @@
 class Pixels
   def initialize(width, height)
     @matrix = Array.new(width) { Array.new(height) {} }
+    clear
   end
   def []=(width, height, new_value)
     @matrix[width][height] = new_value
