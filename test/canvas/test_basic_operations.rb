@@ -36,4 +36,8 @@ describe "Basic canvas operations" do
       canvas.pixels = %w[1 2 3]
     end
   end
+
+  it "can change pixels" do
+    assert_throws
+  end
 end
