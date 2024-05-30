@@ -16,7 +16,7 @@ class Canvas
   puts "\x1b[2J" #clears terminal
   #puts "\x1b[48;2;#{@background_color[0]};#{@background_color[1]};#{@background_color[2]}m" #sets background color
   @pixel.matrix.each_with_index do |arr, i| 
-      arr.each_with_index { |x, j| print =begin"\x1b[38;2;#{@color[i, j][0]};#{@color[i, j][1]};#{@color[i, j][2]}m"=end,x  }
+      arr.each_with_index { |x, j| print x  } #"\x1b[38;2;#{@color[i, j][0]};#{@color[i, j][1]};#{@color[i, j][2]}m",
       puts  
     end #draws every pixel
   end
