@@ -8,8 +8,11 @@ class Pixels
   def [](width, height)
     @matrix[width][height]
   end
-  def clear()
-    @matrix.each { |arr| arr = arr.fill(" ")  }
+  def height
+    @matrix.length
+  end
+  def width
+    @matrix[0].length
   end
   def fill(item)
     if item.length != 1

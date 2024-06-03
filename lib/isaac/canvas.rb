@@ -6,18 +6,23 @@ class Canvas
     @pixel = Pixels.new(width, height)
   end
   def clear()
-    @pixel.clear()
+    @pixel.fill(' ')
   end
   def fill(item)
     @pixel.fill(item)
   end
+  def draw_pixel(width, height, new_value)
+    @pixel [width, height] = new_value
+  end
 
   def display()
-  puts "\x1b[2J" #clears terminal
+  (system "cls") || (system "clear") #clears terminal
+  print "\e[H\e[?25l" #hides cursor (its annoying)
   #puts "\x1b[48;2;#{@background_color[0]};#{@background_color[1]};#{@background_color[2]}m" #sets background color
-  @pixel.matrix.each_with_index do |arr, i| 
-      arr.each_with_index { |x, j| print x  } #"\x1b[38;2;#{@color[i, j][0]};#{@color[i, j][1]};#{@color[i, j][2]}m",
-      puts  
+  (@pixel.height).times do |i| 
+      (@pixel.width).times { |j| print @pixel[i, j]  } #"\x1b[38;2;#{@color[i, j][0]};#{@color[i, j][1]};#{@color[i, j][2]}m",
+      print "\n"
     end #draws every pixel
   end
+  print "\e[H\e[?25h" #makes cursor visible
 end
