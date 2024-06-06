@@ -24,7 +24,7 @@ module Isaac
       @pixels.fill(item)
     end
 
-    def draw_pixel(width, height, new_value, color = Colors::WHITE)
+    def draw_pixel(width, height, new_value, color = Color::WHITE)
       @pixels[width, height] = new_value
       @colors[width, height] = color
     end
@@ -42,7 +42,7 @@ module Isaac
       print "\x1b[0m" # resets
     end
 
-    def draw_rect(x, y, width, height, symbol = "#", color = Colors::WHITE)
+    def draw_rect(x, y, width, height, symbol = "#", color = Color::WHITE)
       return if x.negative? || y.negative? || x >= @width || y >= @height
 
       (x..x + width - 1).each do |i|
@@ -70,7 +70,7 @@ module Isaac
       end
     end
 
-    def fill_rect(x, y, width, height, symbol = "#", color = Colors::WHITE)
+    def fill_rect(x, y, width, height, symbol = "#", color = Color::WHITE)
       return if x.negative? || y.negative? || x >= @width || y >= @height
 
       (x..x + width - 1).each do |i|
@@ -83,7 +83,7 @@ module Isaac
       end
     end
 
-    def draw_text(x, y, string, color = Colors::WHITE, transparent_spaces: false)
+    def draw_text(x, y, string, color = Color::WHITE, transparent_spaces: false)
       return if x.negative? || y.negative? || x >= @width || y >= @height
 
       first = x

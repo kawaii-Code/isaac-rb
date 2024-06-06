@@ -1,20 +1,21 @@
 module Isaac
   class Color
     attr_reader :r, :g, :b
-    
+
     def initialize(r, g, b)
       @r = r
       @g = g
       @b = b
     end
-  end
 
-  class Colors
     BLACK = Color.new(0, 0, 0)
     WHITE = Color.new(255, 255, 255)
     RED = Color.new(255, 0, 0)
     GREEN = Color.new(0, 255, 0)
     BLUE = Color.new(0, 0, 255)
+  end
+
+  class Colors
     def initialize(width, height)
       @matrix = Array.new(width) { Array.new(height) }
       clear
@@ -31,7 +32,7 @@ module Isaac
     end
 
     def clear
-      @matrix.each { |arr| arr.fill(Colors::WHITE) }
+      @matrix.each { |arr| arr.fill(Color::WHITE) }
     end
 
     def height
