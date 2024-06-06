@@ -5,13 +5,13 @@ require "minitest/autorun"
 
 def collect_pixels_to_string(canvas)
   string = ""
-  for row in 0..canvas.height - 1
-    for col in 0..canvas.width - 1
+  (0..canvas.height - 1).each do |row|
+    (0..canvas.width - 1).each do |col|
       string << canvas.pixels[row, col]
     end
     string << "\n"
   end
-  return string
+  string
 end
 
 def assert_display_equals(expected, actual)

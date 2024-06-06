@@ -6,8 +6,8 @@ module Isaac
     end
 
     def []=(width, height, new_value)
-      raise Isaac::Error.new("Can only use strings for pixels!") if not new_value.is_a?(String)
-      raise Isaac::Error.new("Pixel must be a single character!") if new_value.length != 1
+      raise Isaac::Error, "Can only use strings for pixels!" unless new_value.is_a?(String)
+      raise Isaac::Error, "Pixel must be a single character!" if new_value.length != 1
 
       @matrix[width][height] = new_value.to_s
     end
@@ -29,7 +29,7 @@ module Isaac
     end
 
     def fill(item)
-      raise Isaac::Error.new("only single one can cope with it") if item.length != 1
+      raise Isaac::Error, "only single one can cope with it" if item.length != 1
 
       @matrix.each { |arr| arr.fill(item.to_s) }
     end
