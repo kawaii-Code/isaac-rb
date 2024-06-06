@@ -40,7 +40,7 @@ module Isaac
       print "\e[H\e[?25h" # makes cursor visible
     end
 
-    def draw_rect(x, y, width, height, color="#FFFFFF", symbol='#')
+    def draw_rect(x, y, width, height, symbol='#',color="#FFFFFF")
 
       if x < 0 || y < 0 || x >= @width || y >= @height
           return
@@ -83,7 +83,7 @@ module Isaac
       end
   end
   
-  def fill_rect(x, y, width, height, color="#FFFFFF", symbol='#')
+  def fill_rect(x, y, width, height,symbol='#',color="#FFFFFF")
   
       if x < 0 || y < 0 || x >= @width || y >= @height
           return
