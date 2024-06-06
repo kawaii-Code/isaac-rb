@@ -1,18 +1,10 @@
 module Isaac
   class Color
+    attr_reader :r, :g, :b
     def initialize(r, g, b)
       @r = r
       @g = g
       @b = b
-    end
-    def r
-      @r
-    end
-    def g
-      @g
-    end
-    def b
-      @b
     end
   end
 

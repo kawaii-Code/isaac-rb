@@ -33,13 +33,13 @@ module Isaac
       (system "cls") || (system "clear") # clears terminal
       print "\e[H\e[?25l" # hides cursor (its annoying)
       # puts "\x1b[48;2;#{@background_color[0]};#{@background_color[1]};#{@background_color[2]}m" #sets background color
-      @pixels.height.times do |i|
-        @pixels.width.times do |j|
-          print "\x1b[38;2;#{@colors[i, j].r};#{@colors[i, j].g};#{@colors[i, j].b}m",@pixels[i, j]
+      height.times do |i|
+        width.times do |j|
+          print "\x1b[38;2;#{@colors[i, j].r};#{@colors[i, j].g};#{@colors[i, j].b}m", @pixels[i, j]
         end
         print "\n"
       end
-      print "\x1b[0m"#resets
+      print "\x1b[0m" # resets
     end
 
     def draw_rect(x, y, width, height, symbol = "#", color = Colors::WHITE)
