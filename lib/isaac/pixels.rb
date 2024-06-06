@@ -5,7 +5,7 @@ class Pixels
   end
 
   def []=(width, height, new_value)
-    @matrix[width][height] = new_value
+    @matrix[width][height] = new_value.to_s
   end
 
   def [](width, height)
@@ -27,6 +27,6 @@ class Pixels
   def fill(item)
     raise Isaac::Error("only single one can cope with it") if item.length != 1
 
-    @matrix.each { |arr| arr.fill(item) }
+    @matrix.each { |arr| arr.fill(item.to_s) }
   end
 end
