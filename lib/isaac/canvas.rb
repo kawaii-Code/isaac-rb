@@ -7,10 +7,11 @@ module Isaac
   # Screen representation.
   # Consists of a width x height matrix of pixels
   class Canvas
-    attr_reader :pixels, :width, :height
+    attr_reader :pixels, :colors, :width, :height
 
     def initialize(width, height)
       @pixels = Pixels.new(width, height)
+      @colors = Colors.new(width, height)
       @width = width
       @height = height
     end
@@ -23,8 +24,9 @@ module Isaac
       @pixels.fill(item)
     end
 
-    def draw_pixel(width, height, new_value)
+    def draw_pixel(width, height, new_value, color = Colors::WHITE)
       @pixels[width, height] = new_value
+      @colors[width, height] = color
     end
 
     def display
@@ -41,35 +43,35 @@ module Isaac
       print "\e[H\e[?25h" # makes cursor visible
     end
 
-    def draw_rect(x, y, width, height, symbol = "#", _color = Colors::WHITE)
+    def draw_rect(x, y, width, height, symbol = "#", color = Colors::WHITE)
       return if x.negative? || y.negative? || x >= @width || y >= @height
 
       (x..x + width - 1).each do |i|
         break if i >= @width
 
         @pixels[y, i] = symbol
-        # @colors[i][y] = color
+        @colors[y, i] = color
 
         next if y + height - 1 >= @height
 
         @pixels[y + height - 1, i] = symbol
-        # @colors[i][y+height-1] = color
+        @colors[y + height - 1, i] = color
       end
 
       (y..y + height - 1).each do |j|
         break if j >= @height
 
         @pixels[j, x] = symbol
-        # @colors[x][j] = color
+        @colors[j, x] = color
 
         next if x + width - 1 >= @width
 
         @pixels[j, x + width - 1] = symbol
-        # @colors[x+weight-1][j] = color
+        @colors[j, x + width - 1] = color
       end
     end
 
-    def fill_rect(x, y, width, height, symbol = "#", _color = Colors::WHITE)
+    def fill_rect(x, y, width, height, symbol = "#", color = Colors::WHITE)
       return if x.negative? || y.negative? || x >= @width || y >= @height
 
       (x..x + width - 1).each do |i|
@@ -77,12 +79,12 @@ module Isaac
           next if i >= @width || j >= @height
 
           @pixels[j, i] = symbol
-          # @colors[i][j] = color
+          @colors[j, i] = color
         end
       end
     end
 
-    def draw_text(x, y, string, _color = Colors::WHITE, transparent_spaces: false)
+    def draw_text(x, y, string, color = Colors::WHITE, transparent_spaces: false)
       return if x.negative? || y.negative? || x >= @width || y >= @height
 
       first = x
@@ -92,7 +94,7 @@ module Isaac
 
         unless transparent_spaces && char == " "
           @pixels[y, x] = char
-          # @colors[x][y] = color
+          @colors[y, x] = color
         end
         x += 1
 
