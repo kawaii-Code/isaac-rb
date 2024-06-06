@@ -4,9 +4,7 @@ require_relative "pixels"
 
 module Isaac
   class Canvas
-    attr_reader :pixels
-    attr_reader :width
-    attr_reader :height
+    attr_reader :pixels, :width, :height
 
     def initialize(width, height)
       @pixels = Pixels.new(width, height)
@@ -40,93 +38,65 @@ module Isaac
       print "\e[H\e[?25h" # makes cursor visible
     end
 
-    def draw_rect(x, y, width, height, symbol='#',color="#FFFFFF")
+    def draw_rect(x, y, width, height, symbol = "#", _color = "#FFFFFF")
+      return if x.negative? || y.negative? || x >= @width || y >= @height
 
-      if x < 0 || y < 0 || x >= @width || y >= @height
-          return
-      end
-  
-      for i in (x..x+width-1)
-  
-          if i >= @width
-              break
-          end
-  
-          @pixels[y,i] = symbol
-          #@colors[i][y] = color 
-  
-          if y+height-1 >= @height
-              next
-          end
-  
-          @pixels[y+height-1,i] = symbol
-          #@colors[i][y+height-1] = color
-  
-      end
-  
-      for j in (y..y+height-1)
-  
-          if j >= @height
-              break
-          end
-  
-          @pixels[j,x] = symbol
-          #@colors[x][j] = color 
-  
-          if x+width-1 >= @width
-              next
-          end
-  
-          @pixels[j,x+width-1] = symbol
-          #@colors[x+weight-1][j] = color
-          
-      end
-  end
-  
-  def fill_rect(x, y, width, height,symbol='#',color="#FFFFFF")
-  
-      if x < 0 || y < 0 || x >= @width || y >= @height
-          return
-      end
-  
-      for i in (x..x+width-1)
-          for j in (y..y+height-1)
-              if i >= @width || j >= @height
-                  next
-              end
-              @pixels[j,i] = symbol
-              #@colors[i][j] = color 
-          end
-      end
-  end
+      (x..x + width - 1).each do |i|
+        break if i >= @width
 
-  def draw_text (x, y, string, color="#FFFFFF", transporent_spaces=false)
+        @pixels[y, i] = symbol
+        # @colors[i][y] = color
 
-    if x < 0 || y < 0 || x >= @width || y >= @height
-        return
+        next if y + height - 1 >= @height
+
+        @pixels[y + height - 1, i] = symbol
+        # @colors[i][y+height-1] = color
+      end
+
+      (y..y + height - 1).each do |j|
+        break if j >= @height
+
+        @pixels[j, x] = symbol
+        # @colors[x][j] = color
+
+        next if x + width - 1 >= @width
+
+        @pixels[j, x + width - 1] = symbol
+        # @colors[x+weight-1][j] = color
+      end
     end
 
-    first = x
-    
-    string.each_char do |char|
-        
-      if y >= @height
-          break
-      end
+    def fill_rect(x, y, width, height, symbol = "#", _color = "#FFFFFF")
+      return if x.negative? || y.negative? || x >= @width || y >= @height
 
-      if transporent_spaces && char == ' '
-          x = x+1
-      else
-          @pixels[y,x] = char
-          #@colors[x][y] = color
-          x = x+1
+      (x..x + width - 1).each do |i|
+        (y..y + height - 1).each do |j|
+          next if i >= @width || j >= @height
+
+          @pixels[j, i] = symbol
+          # @colors[i][j] = color
+        end
       end
-      
-      if x >= @width
+    end
+
+    def draw_text(x, y, string, _color = "#FFFFFF", transporent_spaces = false)
+      return if x.negative? || y.negative? || x >= @width || y >= @height
+
+      first = x
+
+      string.each_char do |char|
+        break if y >= @height
+
+        unless transporent_spaces && char == " "
+          @pixels[y, x] = char
+          # @colors[x][y] = color
+        end
+        x += 1
+
+        if x >= @width
           x = first
-          y = y+1
-      end
-
+          y += 1
+        end
       end
     end
   end

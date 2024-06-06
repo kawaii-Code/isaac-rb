@@ -41,9 +41,9 @@ describe "Basic canvas operations" do
 
   it "can change pixels" do
     canvas = Isaac::Canvas.new(2, 2)
-    canvas.pixels[1, 1] = '#'
+    canvas.pixels[1, 1] = "#"
 
-    pixels = collect_pixels_to_string canvas
-    expected = "  \n #\n"
+    collect_pixels_to_string canvas
+    "  \n #\n"
   end
 end
