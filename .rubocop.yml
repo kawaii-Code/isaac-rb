@@ -15,11 +15,14 @@ Style/StringLiteralsInInterpolation:
 Style/FrozenStringLiteralComment:
   Enabled: false
 
-Style/MethodParameterName:
+Naming/MethodParameterName:
   Enabled: false
 
 Metrics:
   Enabled: false
 
 Style/Documentation:
+  Enabled: false
+
+Gemspec/RequireMFA:
   Enabled: false
