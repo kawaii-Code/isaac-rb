@@ -15,5 +15,11 @@ Style/StringLiteralsInInterpolation:
 Style/FrozenStringLiteralComment:
   Enabled: false
 
-Metrics/BlockLength:
+Style/MethodParameterName:
+  Enabled: false
+
+Metrics:
+  Enabled: false
+
+Style/Documentation:
   Enabled: false

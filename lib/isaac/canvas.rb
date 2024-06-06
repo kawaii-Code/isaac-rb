@@ -4,6 +4,8 @@ require_relative "pixels"
 require_relative "colors"
 
 module Isaac
+  # Screen representation.
+  # Consists of a width x height matrix of pixels
   class Canvas
     attr_reader :pixels, :width, :height
 
@@ -80,7 +82,7 @@ module Isaac
       end
     end
 
-    def draw_text(x, y, string, _color = Colors::WHITE, transporent_spaces = false)
+    def draw_text(x, y, string, _color = Colors::WHITE, transparent_spaces: false)
       return if x.negative? || y.negative? || x >= @width || y >= @height
 
       first = x
@@ -88,7 +90,7 @@ module Isaac
       string.each_char do |char|
         break if y >= @height
 
-        unless transporent_spaces && char == " "
+        unless transparent_spaces && char == " "
           @pixels[y, x] = char
           # @colors[x][y] = color
         end

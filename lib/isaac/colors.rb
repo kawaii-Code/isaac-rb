@@ -46,4 +46,6 @@ module Isaac
       @matrix.each { |arr| arr.fill(item) }
     end
   end
+
+  private_constant :Colors
 end

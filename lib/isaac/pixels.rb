@@ -34,4 +34,6 @@ module Isaac
       @matrix.each { |arr| arr.fill(item.to_s) }
     end
   end
+
+  private_constant :Pixels
 end
