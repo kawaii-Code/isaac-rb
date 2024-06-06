@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative "pixels"
+require_relative "colors"
 
 module Isaac
   class Canvas
@@ -40,7 +41,7 @@ module Isaac
       print "\e[H\e[?25h" # makes cursor visible
     end
 
-    def draw_rect(x, y, width, height, symbol='#',color="#FFFFFF")
+    def draw_rect(x, y, width, height, symbol='#',color=Colors::WHITE)
 
       if x < 0 || y < 0 || x >= @width || y >= @height
           return
@@ -83,7 +84,7 @@ module Isaac
       end
   end
   
-  def fill_rect(x, y, width, height,symbol='#',color="#FFFFFF")
+  def fill_rect(x, y, width, height,symbol='#',color=Colors::WHITE)
   
       if x < 0 || y < 0 || x >= @width || y >= @height
           return
@@ -100,7 +101,7 @@ module Isaac
       end
   end
 
-  def draw_text (x, y, string, color="#FFFFFF", transporent_spaces=false)
+  def draw_text (x, y, string, color=Colors::WHITE, transporent_spaces=false)
 
     if x < 0 || y < 0 || x >= @width || y >= @height
         return
