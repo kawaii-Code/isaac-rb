@@ -16,13 +16,22 @@ class Canvas
   end
 
   def display()
-  (system "cls") || (system "clear") #clears terminal
-  print "\e[H\e[?25l" #hides cursor (its annoying)
-  #puts "\x1b[48;2;#{@background_color[0]};#{@background_color[1]};#{@background_color[2]}m" #sets background color
-  (@pixel.height).times do |i| 
+    (system "cls") || (system "clear") #clears terminal
+    print "\e[H\e[?25l" #hides cursor (its annoying)
+    #puts "\x1b[48;2;#{@background_color[0]};#{@background_color[1]};#{@background_color[2]}m" #sets background color
+    (@pixel.height).times do |i| 
       (@pixel.width).times { |j| print @pixel[i, j]  } #"\x1b[38;2;#{@color[i, j][0]};#{@color[i, j][1]};#{@color[i, j][2]}m",
       print "\n"
     end #draws every pixel
+    print "\e[H\e[?25h" #makes cursor visible
   end
-  print "\e[H\e[?25h" #makes cursor visible
+
+  def todo_get_display()
+    displ = "".dup
+    (@pixel.height).times do |i| 
+      (@pixel.width).times { |j| displ << @pixel[i, j].to_str  }
+      displ << "\n"
+    end
+    displ
+  end
 end
