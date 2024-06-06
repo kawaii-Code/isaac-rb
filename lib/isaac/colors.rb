@@ -5,6 +5,15 @@ module Isaac
       @g = g
       @b = b
     end
+    def r
+      @r
+    end
+    def g
+      @g
+    end
+    def b
+      @b
+    end
   end
 
   class Colors

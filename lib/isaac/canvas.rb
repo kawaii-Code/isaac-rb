@@ -34,13 +34,12 @@ module Isaac
       print "\e[H\e[?25l" # hides cursor (its annoying)
       # puts "\x1b[48;2;#{@background_color[0]};#{@background_color[1]};#{@background_color[2]}m" #sets background color
       @pixels.height.times do |i|
-        # "\x1b[38;2;#{@color[i, j][0]};#{@color[i, j][1]};#{@color[i, j][2]}m",
         @pixels.width.times do |j|
-          print @pixels[i, j]
+          print "\x1b[38;2;#{@colors[i, j].r};#{@colors[i, j].g};#{@colors[i, j].b}m",@pixels[i, j]
         end
         print "\n"
       end
-      print "\e[H\e[?25h" # makes cursor visible
+      print "\x1b[0m"#resets
     end
 
     def draw_rect(x, y, width, height, symbol = "#", color = Colors::WHITE)
