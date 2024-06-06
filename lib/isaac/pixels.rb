@@ -1,12 +1,16 @@
 class Pixels
   def initialize(width, height)
     @matrix = Array.new(width) { Array.new(height) {} }
+    clear
   end
   def []=(width, height, new_value)
     @matrix[width][height] = new_value
   end
   def [](width, height)
     @matrix[width][height]
+  end
+  def clear()
+    @matrix.each { |arr| arr = arr.fill(" ")  }
   end
   def height
     @matrix.length

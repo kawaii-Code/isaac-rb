@@ -6,7 +6,7 @@ class Canvas
     @pixel = Pixels.new(width, height)
   end
   def clear()
-    @pixel.fill(' ')
+    @pixel.clear()
   end
   def fill(item)
     @pixel.fill(item)
