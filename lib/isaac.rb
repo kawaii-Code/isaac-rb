@@ -6,5 +6,4 @@ require_relative "isaac/canvas"
 
 module Isaac
   class Error < StandardError; end
-
 end
